@@ -14,3 +14,10 @@ steps:
          repository: 'c100/azure-container'
          command: 'buildAndPush'
          Dockerfile: 'Dockerfile'
+
+     - task: SSH@0
+       inputs:
+            sshEndpoint: 'Digital Ocean Droplet'
+            runOptions: 'commands'
+            commands: 'docker pull c100/azure-container:39'
+            readyTimeout: '20000'
