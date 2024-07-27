@@ -26,6 +26,13 @@ WORKDIR /hello_app
 # Copy the app contents to the image
 COPY . /hello_app
 
+# Creates a non-root user with an explicit UID and adds permission to access the /hello_app folder.
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /hello_app
+USER appuser
+
+# Provides defaults for an executing container; can be overridden with Docker CLI.
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app"]
+
 # If you have additional requirements beyond Flask (which is included in the
 # base image), generate a requirements.txt file with pip freeze and uncomment
 # the next three lines.
