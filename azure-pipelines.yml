@@ -8,9 +8,9 @@ variables:
    imageName: 'pipelines-python-docker'
 
 steps:
- - task: Docker@2
-   displayName: Build an image
-   inputs:
-     repository: $(imageName)
-     command: build
-     Dockerfile: Dockerfile
+     - task: Docker@2
+       inputs:
+         containerRegistry: 'Docker hub'
+         repository: 'c100/azure-container'
+         command: 'buildAndPush'
+         Dockerfile: 'Dockerfile'
