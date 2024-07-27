@@ -31,7 +31,7 @@ COPY . /hello_app
 #USER appuser
 
 # Provides defaults for an executing container; can be overridden with Docker CLI.
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app"]
+CMD ["flask run"]
 
 # If you have additional requirements beyond Flask (which is included in the
 # base image), generate a requirements.txt file with pip freeze and uncomment
